@@ -13,3 +13,24 @@
 #include "machine/cgascr.h"
 
 /* Add your code here */ 
+
+void CGA_Screen::show (int x, int y, char c, unsigned char attrib){
+	
+	
+	}
+
+
+void CGA_Screen::setpos (int x, int y){
+	
+	
+}
+
+
+void CGA_Screen::getpos (int &x, int &y){
+	
+}
+
+
+void CGA_Screen::print (char* text, int length, unsigned char attrib){
+	
+	}

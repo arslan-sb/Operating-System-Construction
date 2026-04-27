@@ -13,18 +13,28 @@
 /* I/O ports.                                                                */
 /*****************************************************************************/
 
-#include "machine/io_port.h"
+#include "io_port.h"
 
 class CGA_Screen {
 private:
 /* Add your code here */ 
+	int x;
+	int y;
+	
 
 public:
 	CGA_Screen(const CGA_Screen &copy) = delete; // prevent copying
 	CGA_Screen& operator=(const CGA_Screen&) = delete; // prevent assignment
 	CGA_Screen()
 /* Add your code here */ 
-{}
+
+	{
+	
+	}
+	void show (int x, int y, char c, unsigned char attrib);
+	void setpos (int x, int y);
+	void getpos (int &x, int &y)
+	void int (char* text, int length, unsigned char attrib)
 
 /* Add your code here */ 
 };

@@ -1,0 +1,18 @@
+# Build artifacts
+*.o
+*.d
+*.elf
+*.iso
+*.bin
+*.img
+build/
+isofiles/boot/grub/   # if auto-generated
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# QEMU / debug
+*.log
