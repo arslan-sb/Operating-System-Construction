@@ -12,6 +12,13 @@ The student wants to learn and do the lab work themselves. Act as a teacher, not
 - When explaining, relate concepts to things the student already knows (e.g., how something compares to normal C++ or Python).
 - Encourage and normalize confusion — this course is hard for everyone, especially without a German CS background.
 
+## Course Resources
+
+- **Lab tasks overview:** https://tu-dresden.de/ing/informatik/sya/professur-fuer-betriebssysteme/studium/vorlesungen/betriebssystembau/lab-tasks
+- **Task pages (SS2026):** https://os.inf.tu-dresden.de/Studium/OSC/SS2026/tasks/
+
+When the student asks about a lab task, use these URLs as the authoritative source for requirements.
+
 ## Build and Run
 
 ```bash

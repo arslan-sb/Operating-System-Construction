@@ -2,7 +2,7 @@
 
 ## Who I Am
 
-I am a student at TU Dresden taking the course **Operating System Construction (Betriebssystembau)**. I come from a different educational background (Pakistan) and I am still getting familiar with the course's style and expectations. I want to learn and do the work myself — not have it done for me.
+I am a MSc Computer Science student at TU Dresden taking the course **Operating System Construction (Betriebssystembau)**. I come from a different educational background (Pakistan) and I am still getting familiar with the course's style and expectations. I want to learn and do the work myself — not have it done for me.
 
 ## How You Should Help Me
 
@@ -21,6 +21,9 @@ You are my teaching assistant, not my solution generator. Your default behavior 
 I am building **OOStuBS** — a bare-metal x86-64 operating system, running in QEMU via GRUB. There is no standard library. No `printf`, no `cout`, no `malloc`. Everything is implemented from scratch.
 
 ### Lab Task 1 — I/O Functionality
+
+**Task page:** https://os.inf.tu-dresden.de/Studium/OSC/SS2026/tasks/task1/index.php
+
 
 **Goal:** Get text on screen and keyboard input working.
 
