@@ -20,21 +20,18 @@ private:
 /* Add your code here */ 
 	int x;
 	int y;
-	
+	char* CGA_START= (char*)0xb8000;
+
 
 public:
 	CGA_Screen(const CGA_Screen &copy) = delete; // prevent copying
 	CGA_Screen& operator=(const CGA_Screen&) = delete; // prevent assignment
-	CGA_Screen()
+	CGA_Screen();
 /* Add your code here */ 
-
-	{
-	
-	}
 	void show (int x, int y, char c, unsigned char attrib);
 	void setpos (int x, int y);
-	void getpos (int &x, int &y)
-	void int (char* text, int length, unsigned char attrib)
+	void getpos (int &x, int &y);
+	void print (char* text, int length, unsigned char attrib);
 
 /* Add your code here */ 
 };
