@@ -6,8 +6,10 @@
 *.bin
 *.img
 build/
-isofiles/boot/grub/   # if auto-generated
-
+# grub config dir is auto-generated
+isofiles/boot/grub/
+isofiles/boot/system
+/experiment
 # Editor
 .vscode/
 .idea/
