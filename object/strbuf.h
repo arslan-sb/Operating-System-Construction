@@ -20,7 +20,33 @@ class Stringbuffer {
 public:
 	Stringbuffer(const Stringbuffer &copy) = delete; // prevent copying
 	Stringbuffer& operator=(const Stringbuffer&) = delete; // prevent assignment
-/* Add your code here */ 
+
+	// FLUSH: hands the buffered characters to the output device and
+	//        empties the buffer.
+	//        Pure virtual, because Stringbuffer is device independent: it
+	//        collects characters but has no idea where they should end up.
+	//        The derived class supplies the device knowledge.
+	virtual void flush() = 0;
+
+protected:
+	// Only derived classes may construct a Stringbuffer -- on its own it
+	// is useless, since flush() has no implementation.
+	Stringbuffer();
+
+	// PUT: appends one character, flushing automatically when the buffer
+	//      runs full.
+	void put(char c);
+
+	// One CGA line.  Larger buffers would delay output without buying
+	// anything, since flush() writes at most one line's worth of
+	// characters in one go anyway; smaller ones would cause more device
+	// accesses than necessary.
+	enum { BUFFER_SIZE = 80 };
+
+	// protected rather than private: flush() lives in the derived class
+	// and has to read what we collected.
+	char buffer[BUFFER_SIZE];
+	int pos; // next free slot == number of buffered characters
 };
 
 #endif

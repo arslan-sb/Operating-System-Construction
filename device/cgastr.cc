@@ -13,4 +13,16 @@
 
 #include "device/cgastr.h"
 
-/* Add your code here */ 
+CGA_Stream::CGA_Stream() : attribute(CGA_Screen::STD_ATTR)
+{
+	// The CGA_Screen base class constructor has already cleared the
+	// screen and homed the cursor.
+}
+
+void CGA_Stream::flush()
+{
+	// buffer and pos are the protected members inherited from
+	// Stringbuffer; print() comes from CGA_Screen.
+	CGA_Screen::print(buffer, pos, attribute);
+	pos = 0;
+}

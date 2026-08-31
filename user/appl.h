@@ -18,8 +18,12 @@ class Application
 public:
 	Application (const Application &copy) = delete; // prevent copying
 	Application& operator=(const Application&) = delete; // prevent assignment
-/* Add your code here */ 
- 
+
+	// Declaring the deleted copy constructor above suppresses the implicit
+	// default constructor, so it has to be requested explicitly.
+	Application() = default;
+
+	// ACTION: the application's main routine.
 	void action ();
 };
 
