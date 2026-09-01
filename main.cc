@@ -1,33 +1,16 @@
-/*****************************************************************************/
-/* Operating-System Construction                                             */
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                                  M A I N                                  */
-/*                                                                           */
-/*---------------------------------------------------------------------------*/
-/* The system's entry point, called from startup.asm after the global        */
-/* constructors have been run.                                               */
-/*****************************************************************************/
+/* Add your code here */ 
+#include "machine/cgascr.h"
 
-/* INCLUDES */
-
-#include "device/cgastr.h"
-#include "user/appl.h"
-
-/* GLOBAL VARIABLES */
-
-// OOStuBS' one and only output stream.  As a global object its constructor
-// runs in _init (startup.asm), before main() is entered -- which is what
-// clears the screen and homes the cursor.
-CGA_Stream kout;
-
-// The (only) application.
-Application application;
-
-/* FUNCTIONS */
 
 int main()
 {
-	application.action();
+	CGA_Screen a;
+	
+/* Add your code here */ 
+ 
+/* Add your code here */ 
+ 
+/* Add your code here */ 
+ 
 	return 0;
 }

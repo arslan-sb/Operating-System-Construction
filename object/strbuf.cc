@@ -15,17 +15,4 @@
 
 #include "object/strbuf.h"
 
-Stringbuffer::Stringbuffer() : pos(0)
-{
-	// Careful: flush() must NOT be called from here.  During the base
-	// class constructor the vtable still points at Stringbuffer, so the
-	// call would land on the pure virtual method.
-}
-
-void Stringbuffer::put(char c)
-{
-	buffer[pos++] = c;
-
-	if (pos == BUFFER_SIZE)
-		flush();
-}
+/* Add your code here */ 
