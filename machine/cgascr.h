@@ -23,7 +23,7 @@ public:
 	CGA_Screen &operator=(const CGA_Screen &) = delete; // prevent assignment
 
 	enum { COLUMNS =80, ROWS =25};
-	enum { STD_ATTR = 0X0f};
+	enum { STD_ATTR = 0x0f};
 
 
 
@@ -38,7 +38,7 @@ public:
 private:
 	/* Add your code here */
 	static char* const CGA_START; // 0xb8000
-	const IO_Port index_port;	  // 0x3d4
+	const IO_Port index_port;	  // 0x3d4 
 	const IO_Port data_port;	  // 0x3d5
 	enum{ CURSOR_HIGH = 14, CURSOR_LOW = 15 };
 	
