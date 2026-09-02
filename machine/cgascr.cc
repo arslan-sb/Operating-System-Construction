@@ -79,10 +79,8 @@ void CGA_Screen::print(char *text, int length, unsigned char attrib)
 			scrollup(attrib);
 			y = ROWS -1;
 		}
-
-		setpos(x,y);
-
 	}
+	setpos(x,y);
 }
 
 void CGA_Screen::clear(unsigned char attrib)

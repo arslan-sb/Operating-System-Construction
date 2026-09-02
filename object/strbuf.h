@@ -21,6 +21,15 @@ public:
 	Stringbuffer(const Stringbuffer &copy) = delete; // prevent copying
 	Stringbuffer& operator=(const Stringbuffer&) = delete; // prevent assignment
 /* Add your code here */ 
+	virtual void flush() = 0;
+
+	protected:  //buffer and pos are protected, not private, because flush() lives in the derived class and has to read what we collected
+	Stringbuffer();
+	void put(char c);
+	enum { BUFFER_SIZE =80};
+	char buffer[BUFFER_SIZE];
+	int pos;
+
 };
 
 #endif

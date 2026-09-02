@@ -21,13 +21,36 @@
 
 #include "object/strbuf.h"
 
-class O_Stream
+class O_Stream: public Stringbuffer
 /* Add your code here */ 
 {
 public:
 	O_Stream(const O_Stream &copy) = delete; // prevent copying
 	O_Stream& operator=(const O_Stream&) = delete; // prevent assignment
 /* Add your code here */ 
+
+	O_Stream();
+
+	int base;
+
+	O_Stream& operator<<(char c);
+	O_Stream& operator<<(unsigned char c);
+	O_Stream& operator<<(const char* string);
+	O_Stream& operator<<(bool b);
+
+	O_Stream& operator<<(short value);
+	O_Stream& operator<<(unsigned short value);
+
+	O_Stream& operator<<(int value);
+	O_Stream& operator<<(unsigned int value);
+	
+	O_Stream& operator<<(long value);
+	O_Stream& operator<<(unsigned long value);
+
+	O_Stream& operator<<(long long value);
+	O_Stream& operator<<(unsigned long long value);
+
+	O_Stream& operator<<(void *pointer);
 };
 
 /*---------------------------------------------------------------------------*/
