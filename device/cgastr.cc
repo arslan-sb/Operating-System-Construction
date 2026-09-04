@@ -14,3 +14,12 @@
 #include "device/cgastr.h"
 
 /* Add your code here */ 
+
+CGA_Stream::CGA_Stream():attribute(CGA_Screen::STD_ATTR){}
+
+void CGA_Stream::flush()
+{
+    CGA_Screen::print(buffer, pos, attribute);
+    pos = 0;
+}
+

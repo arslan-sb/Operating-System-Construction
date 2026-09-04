@@ -51,6 +51,14 @@ public:
 	O_Stream& operator<<(unsigned long long value);
 
 	O_Stream& operator<<(void *pointer);
+
+	O_Stream& operator<<(O_Stream& (*fkt)(O_Stream&));
+
+
+	private:
+
+	void put_unsigned(unsigned long long value);
+	void put_signed(long long value); 
 };
 
 /*---------------------------------------------------------------------------*/
@@ -68,17 +76,22 @@ public:
 
 // ENDL: inserts a newline in the output and flushes the buffer
 /* Add your code here */ 
+O_Stream& endl(O_Stream& os);
 
 // BIN: selects the binary number system
 /* Add your code here */ 
+O_Stream& bin(O_Stream& os);
 
 // OCT: selects the octal number system
 /* Add your code here */ 
+O_Stream& oct(O_Stream& os);
 
 // DEC: selects the decimal number system
 /* Add your code here */ 
+O_Stream& dec(O_Stream& os);
 
 // HEX: selects the hexadecimal number system
 /* Add your code here */ 
+O_Stream& hex(O_Stream& os);
 
 #endif
