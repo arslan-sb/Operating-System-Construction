@@ -14,7 +14,7 @@
 
 /* Add your code here */	
 
-char *const CGA_Screen::CGA_START = (char *)0xb8000;
+char *const CGA_Screen::CGA_START = (char *)VGA_BASE;
 
 
 CGA_Screen::CGA_Screen():index_port(0x3d4),data_port(0x3d5)

@@ -12,6 +12,7 @@
 
 #include "user/appl.h"
 #include "device/cgastr.h"
+#include "machine/keyctrl.h"
 /* Add your code here */ 
  
 /* GLOBAL VARIABLES */
@@ -21,19 +22,43 @@ extern CGA_Stream kout;
  
 void Application::action()
 {
-/* Add your code here */ 
-kout << "Test          <stream result> -> <expected>" << endl;
-kout << "zero:         " << 0 << " -> 0" << endl;
-kout << "decimal:      " << dec << 42 << " -> 42" << endl;
-kout << "binary:       " << bin << 42 << dec << " -> 0b101010" << endl;
-kout << "octal:        " << oct << 42 << dec << " -> 052" << endl;
-kout << "hex:          " << hex << 42 << dec << " -> 0x2a" << endl;
-kout << "uint64_t max: " << ~((unsigned long)0) << " -> 18446744073709551615" << endl;
-kout << "int64_t max:  " << ~(1l<<63) << " -> 9223372036854775807" << endl;
-kout << "int64_t min:  " << (1l<<63) << " -> -9223372036854775808" << endl;
-kout << "some int64_t: " << (-1234567890123456789) << " -> -1234567890123456789" << endl;
-kout << "some int64_t: " << (1234567890123456789) << " -> 1234567890123456789" << endl;
-kout << "pointer:      " << reinterpret_cast<void*>(1994473406541717165ul) << " -> 0x1badcafefee1dead" << endl;
-kout << "smiley:       " << static_cast<char>(1) << endl;
- 
+    kout << "OOStuBS -- Task 1" << endl;
+    kout << "=================" << endl << endl;
+
+    // --- number bases -----------------------------------------------------
+    int value = 42;
+    kout << "42 dec:  " << dec << value << endl;
+    kout << "42 hex:  " << hex << value << endl;
+    kout << "42 oct:  " << oct << value << endl;
+    kout << "42 bin:  " << bin << value << endl << dec << endl;
+
+    // --- 64-bit values ----------------------------------------------------
+    long long          smin = -9223372036854775807LL - 1;   // LLONG_MIN
+    unsigned long long umax = 18446744073709551615ULL;      // ULLONG_MAX
+
+    kout << "int64  min: " << smin << endl;
+    kout << "uint64 max: " << umax << endl;
+    kout << "uint64 max: " << hex << umax << " (hex)" << endl << dec;
+
+    // sign handling: '-' in base 10, bit pattern in every other base
+    kout << "-1 dec:     " << -1 << endl;
+    kout << "-1 hex:     " << hex << -1 << endl << dec << endl;
+
+    // --- pointers and characters ------------------------------------------
+    kout << "&value:     " << (void *)&value << endl;
+    kout << "*(&value):  " << *(&value) << endl;
+    kout << "char:       " << 'X' << endl;
+    kout << "bool:       " << true << endl << endl;
+
+    // --- keyboard ---------------------------------------------------------
+    Keyboard_Controller keyboard;
+
+    kout << "type something:" << endl << endl;
+
+    while (true) {
+        Key key = keyboard.key_hit();
+
+        if (key.valid())            // false for modifier-only presses
+            kout << (char)key.ascii() << flush;
+    }
 }

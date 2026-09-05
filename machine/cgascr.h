@@ -1,6 +1,6 @@
 #ifndef __screen_include__
 #define __screen_include__
-
+#define VGA_BASE 0xb8000
 /*****************************************************************************/
 /* Operating-System Construction                                             */
 /*---------------------------------------------------------------------------*/
@@ -24,7 +24,6 @@ public:
 
 	enum { COLUMNS =80, ROWS =25};
 	enum { STD_ATTR = 0x0f};
-
 
 
 	CGA_Screen();

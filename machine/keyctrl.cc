@@ -210,7 +210,7 @@ void Keyboard_Controller::get_ascii_code()
 // KEYBOARD_CONTROLLER: keyboard initialization: disables all LEDs and
 //                      sets the repeat rate to maximum.
 
-Keyboard_Controller::Keyboard_Controller() : ctrl_port(0x64), data_port(0x60)
+Keyboard_Controller::Keyboard_Controller() : code(0),prefix(0),leds(0),ctrl_port(0x64), data_port(0x60)
 {
 	// disable all LEDs (many PCs enable Num Lock during the boot process)
 	set_led(led::caps_lock, false);
@@ -232,7 +232,23 @@ Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
 /* Add your code here */ 
+// Wait for a byte that is actually there (outb) and actually came from
+    // the keyboard rather than the PS/2 mouse (auxb clear).
+	int status;
+	do{
+		status = ctrl_port.inb();
+	}while(!(status & outb)||(status&auxb));
+
+	code = data_port.inb();
 /* Add your code here */ 
+ // One key press can span several bytes: a prefix (0xe0/0xe1), the make
+    // code, later the break code. key_decoded() returns true only when a
+    // complete key is available; until then there is nothing to report.
+
+	if (key_decoded())
+	{
+		return gather;
+	}
  
 /* Add your code here */ 
 	return invalid;
@@ -269,18 +285,61 @@ void Keyboard_Controller::reboot()
 
 void Keyboard_Controller::set_repeat_rate(int speed, int delay)
 {
-/* Add your code here */ 
- 
-/* Add your code here */ 
- 
+    while (ctrl_port.inb() & inpb)
+        ;
+    data_port.outb(kbd_cmd::set_speed);
+
+    unsigned char reply;
+    do {
+        while (!(ctrl_port.inb() & outb))
+            ;
+        reply = data_port.inb();
+    } while (reply != kbd_reply::ack);
+
+    while (ctrl_port.inb() & inpb)
+        ;
+    data_port.outb(((delay & 3) << 5) | (speed & 31));
+
+    do {
+        while (!(ctrl_port.inb() & outb))
+            ;
+        reply = data_port.inb();
+    } while (reply != kbd_reply::ack);
 }
+
 
 // SET_LED: sets or clears the specified LED
-
 void Keyboard_Controller::set_led(char led, bool on)
 {
-/* Add your code here */ 
- 
-/* Add your code here */ 
- 
+    // Wait until the controller has digested the previous byte.
+    while (ctrl_port.inb() & inpb)
+        ;
+    data_port.outb(kbd_cmd::set_led);
+
+    // Consume the acknowledgement.
+    unsigned char reply;
+    do {
+        while (!(ctrl_port.inb() & outb))
+            ;
+        reply = data_port.inb();
+    } while (reply != kbd_reply::ack);
+
+    // The keyboard wants the state of ALL THREE LEDs in one byte, so we have
+    // to remember them; 'leds' is that shadow copy.
+    if (on)
+        leds |= led;
+    else
+        leds &= ~led;
+
+    // Second byte: the parameter. Same handshake again.
+    while (ctrl_port.inb() & inpb)
+        ;
+    data_port.outb(leds);
+
+    do {
+        while (!(ctrl_port.inb() & outb))
+            ;
+        reply = data_port.inb();
+    } while (reply != kbd_reply::ack);
 }
+

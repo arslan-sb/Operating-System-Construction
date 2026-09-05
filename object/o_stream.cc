@@ -196,3 +196,9 @@ O_Stream& oct(O_Stream& os){ os.base = 8; return os;}
 O_Stream& dec(O_Stream& os){ os.base = 10; return os;}
 O_Stream& hex(O_Stream& os){ os.base = 16; return os;}
 
+O_Stream& flush(O_Stream& os)
+{
+    os.flush();
+    return os;
+}
+

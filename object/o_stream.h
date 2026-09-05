@@ -94,4 +94,7 @@ O_Stream& dec(O_Stream& os);
 /* Add your code here */ 
 O_Stream& hex(O_Stream& os);
 
+// FLUSH: writes the buffered characters out without a line break
+O_Stream& flush(O_Stream& os);
+
 #endif
